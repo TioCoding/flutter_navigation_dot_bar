@@ -6,7 +6,7 @@ Una libreria de Flutter, el cual agrega un BottomNavigationBar con un mejor esti
 
 ## Como usarlo
 
-Agregue el paquete desde github agregando lo siguiente a su publicación pubspec.yaml.
+Agregue la dependencia a su proyecto, editando el archivo pubspec.yaml.
 
 ````
   dependencies:
@@ -16,7 +16,7 @@ Importar la libreria a tu proyecto:
 ````
 import 'package:navigation_dot_bar/navigation_dot_bar.dart';
 ````
-Usalo de manera sencilla con BottomNavigationDotBar de la siguiente manera:
+Usalo de manera sencilla con BottomNavigationDotBar:
 ````
 Scaffold(
   appBar: AppBar( title: Text("Demo Bottom Navigation Bar")),
