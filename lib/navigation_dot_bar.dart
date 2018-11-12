@@ -13,7 +13,7 @@ class BottomNavigationDotBar extends StatefulWidget{
 
 }
 
-class _BottomNavigationDotBarState extends State<BottomNavigationDotBar> with SingleTickerProviderStateMixin {
+class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
 
   GlobalKey _keyBottomBar = GlobalKey();
   double _numPositionBase, _numDifferenceBase, _positionLeftIndicatorDot;
