@@ -10,7 +10,7 @@ Agregue el paquete desde github agregando lo siguiente a su publicación pubspec
 
 ````
   dependencies:
-    navigation_dot_bar: ^0.1.0
+    navigation_dot_bar: ^0.1.1
 ````
 Importar la libreria a tu proyecto:
 ````
