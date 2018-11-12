@@ -2,6 +2,8 @@
 
 Una libreria de Flutter, el cual agrega un BottomNavigationBar con un mejor estilo. Inspirada en la aplicacion "Reflectly"
 
+![20181111_230822](https://user-images.githubusercontent.com/22163898/48326755-02bf8480-e609-11e8-8825-b81750ea9dfc.gif)
+
 ## Como usarlo
 
 Agregue el paquete desde github agregando lo siguiente a su publicación pubspec.yaml.
