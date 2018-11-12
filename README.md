@@ -6,7 +6,7 @@ Una libreria de Flutter, el cual agrega un BottomNavigationBar con un mejor esti
 
 ## Como usarlo
 
-Agregue el paquete desde github agregando lo siguiente a su publicación pubspec.yaml.
+Agregue la dependencia a su proyecto, editando el archivo pubspec.yaml.
 
 ````
   dependencies:
