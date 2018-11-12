@@ -1,0 +1,16 @@
+name: navigation_dot_bar
+description: A library of Flutter to add a new style in the navigation bar.
+version: 0.1.0
+author: Juan Junior Chauca Flores <tiocoding@gmail.com>
+homepage: https://github.com/TioCoding/flutter_navigation_dot_bar
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
