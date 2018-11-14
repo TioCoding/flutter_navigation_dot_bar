@@ -17,7 +17,7 @@ Importar la libreria a tu proyecto:
 import 'package:navigation_dot_bar/navigation_dot_bar.dart';
 ````
 Usalo de manera sencilla con BottomNavigationDotBar:
-````
+````dart
 Scaffold(
   appBar: AppBar( title: Text("Demo Bottom Navigation Bar")),
   body: Container(),
