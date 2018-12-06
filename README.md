@@ -10,7 +10,7 @@ Agregue la dependencia a su proyecto, editando el archivo pubspec.yaml.
 
 ````
   dependencies:
-    navigation_dot_bar: ^0.1.2
+    navigation_dot_bar: ^0.1.3
 ````
 Importar la libreria a tu proyecto:
 ````
