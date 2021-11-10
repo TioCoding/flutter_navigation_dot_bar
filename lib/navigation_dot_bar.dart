@@ -8,8 +8,26 @@ class BottomNavigationDotBar extends StatefulWidget{
   final Color? activeColor;
   final Color? color;
   final int initialPosition;
+  final double? elevation;
+  final BorderRadiusGeometry? border;
+  final EdgeInsetsGeometry? padding;
+  final int? animationSpeed;
+  final CircleAvatar? indicator;
+  final bool useThemeColors;
 
-  const BottomNavigationDotBar({required this.items, this.activeColor, this.color, this.initialPosition = 0, Key? key}): super(key: key);
+  const BottomNavigationDotBar({
+    required this.items, 
+    this.activeColor, 
+    this.color, 
+    this.initialPosition = 0, 
+    this.elevation,
+    this.border,
+    this.padding,
+    this.animationSpeed,
+    this.indicator,
+    this.useThemeColors = false,
+    Key? key
+  }): super(key: key);
 
   @override
   State<StatefulWidget> createState() => _BottomNavigationDotBarState();
@@ -25,9 +43,20 @@ class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
   int _indexPageSelected = 1;
   Color? _color;
   Color? _activeColor;
+  
+  double? _elevation;
+  BorderRadiusGeometry? _border;
+  EdgeInsetsGeometry? _padding;
+  int? _animationSpeed;
+  CircleAvatar? _indicator;
 
   @override
   void initState() {
+    _elevation = widget.elevation ?? 5;
+    _border = widget.border ?? BorderRadius.circular(10);
+    _padding = widget.padding ?? EdgeInsets.fromLTRB(10, 0, 10, 5);
+    _animationSpeed = widget.animationSpeed ?? 400;
+    _indicator = widget.indicator ?? CircleAvatar(radius: 2.5, backgroundColor: widget.useThemeColors ? _activeColor : Colors.black);
     WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
     super.initState();
   }
@@ -35,21 +64,22 @@ class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
   _afterLayout(_) {
     _indexPageSelected = widget.initialPosition;
     _color = widget.color ?? Colors.black45;
-    _activeColor = widget.activeColor ?? Theme.of(context).primaryColor;
+    
     final sizeBottomBar = (_keyBottomBar.currentContext!.findRenderObject() as RenderBox).size;
     _numPositionBase = ((sizeBottomBar.width / widget.items.length));
     _numDifferenceBase = (_numPositionBase - (_numPositionBase / 2) + 2);
     setState(() { 
+      _activeColor = widget.activeColor ?? Theme.of(context).primaryColor;
       _positionLeftIndicatorDot = (_numPositionBase * (_indexPageSelected+1))-_numDifferenceBase; 
     });
   }
 
   @override
   Widget build(BuildContext context) => Container (
-    padding: EdgeInsets.fromLTRB(5, 0, 5, 5),
+    padding: _padding,
     child: Material(
-        elevation: 5,
-        borderRadius: BorderRadius.circular(10),
+        elevation: _elevation!,
+        borderRadius: _border,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 12),
           child: Stack(
@@ -63,8 +93,8 @@ class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
                 ),
               ),
               AnimatedPositioned(
-                  child: CircleAvatar(radius: 2.5, backgroundColor: _activeColor),
-                  duration: Duration(milliseconds: 400),
+                  child: _indicator!,
+                  duration: Duration(milliseconds: _animationSpeed!),
                   curve: Curves.fastOutSlowIn,
                   left: _positionLeftIndicatorDot,
                   bottom: 0
