@@ -7,8 +7,9 @@ class BottomNavigationDotBar extends StatefulWidget{
   final List<BottomNavigationDotBarItem> items;
   final Color? activeColor;
   final Color? color;
+  final int initialPosition;
 
-  const BottomNavigationDotBar({required this.items, this.activeColor, this.color, Key? key}): super(key: key);
+  const BottomNavigationDotBar({required this.items, this.activeColor, this.color, this.initialPosition = 0, Key? key}): super(key: key);
 
   @override
   State<StatefulWidget> createState() => _BottomNavigationDotBarState();
@@ -21,7 +22,7 @@ class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
   double _numPositionBase = 0.0;
   double _numDifferenceBase = 0.0;
   double? _positionLeftIndicatorDot;
-  int _indexPageSelected = 0;
+  int _indexPageSelected = 1;
   Color? _color;
   Color? _activeColor;
 
@@ -32,14 +33,15 @@ class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
   }
 
   _afterLayout(_) {
+    _indexPageSelected = widget.initialPosition;
     _color = widget.color ?? Colors.black45;
     _activeColor = widget.activeColor ?? Theme.of(context).primaryColor;
     final sizeBottomBar = (_keyBottomBar.currentContext!.findRenderObject() as RenderBox).size;
     _numPositionBase = ((sizeBottomBar.width / widget.items.length));
     _numDifferenceBase = (_numPositionBase - (_numPositionBase / 2) + 2);
     setState(() { 
-      _positionLeftIndicatorDot = _numPositionBase - _numDifferenceBase; 
-      });
+      _positionLeftIndicatorDot = (_numPositionBase * (_indexPageSelected+1))-_numDifferenceBase; 
+    });
   }
 
   @override
@@ -83,7 +85,9 @@ class _BottomNavigationDotBarState extends State<BottomNavigationDotBar>{
 
   void _changeOptionBottomBar(int indexPageSelected){
     if(indexPageSelected != _indexPageSelected){
-      setState(() { _positionLeftIndicatorDot = (_numPositionBase * (indexPageSelected+1))-_numDifferenceBase; });
+      setState(() { 
+        _positionLeftIndicatorDot = (_numPositionBase * (indexPageSelected+1))-_numDifferenceBase; 
+      });
       _indexPageSelected = indexPageSelected;
     }
   }
